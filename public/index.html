@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>pi-clock</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name=”robots” content=”NOODP,NOYDIR” />
+    <meta name="theme-color" content="#111111">
+
+    <meta property="og:image" content="/img/logo_card.webp">
+    <meta property="twitter:image" content="/img/logo_card.webp">
+
+    <!--
+    <link rel="preload" href="/font/JetBrainsMono-Regular.subset.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/font/CharterRegular.subset.woff2" as="font" type="font/woff2" crossorigin>
+    -->
+
+    <style>
+/*
+ * Import fonts
+ */
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+html {
+  /*
+   * Variable declarations, available everywhere on the page
+   */
+  --bg: #111;
+  --bg-light: #333;
+  --gray: #c5c6c7;
+  --cyan: #66fcf1;
+  --pink: #f64c72;
+  --text: #fafafa;
+  --text-muted: #c0c0c0;
+  --link-blue: #6495ED;
+
+  font-size: 16px;
+
+  line-height: 1.5;
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
+  text-rendering: optimizelegibility !important;
+
+  font-kerning: normal;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: Sans-Serif;
+
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+a {
+  color: var(--link-blue);
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+main {
+  width: 100vw;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr 1fr;
+  padding: 0.25rem;
+}
+
+#radar-image-wrapper {
+  height: 100%;
+  grid-row-start: span 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#time {
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+}
+
+img {
+  padding: 0.5rem;
+}
+
+section > div {
+  padding: 0.5rem 0;
+}
+
+    </style>
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+  </head>
+
+  <body>
+      <p id="time"></p>
+
+    <main>
+      <div id="radar-image-wrapper">
+        <img id="radar-image" src="/img/spinner.gif" />
+      </div>
+
+
+      <section id="current-forecast">
+      </section>
+
+      <section id="next-forecast">
+      </section>
+    </main>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

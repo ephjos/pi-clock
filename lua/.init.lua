@@ -1,0 +1,37 @@
+ProgramPrivateKey(Slurp('/etc/letsencrypt/live/pi-clock-ecdsa/privkey.pem'))
+ProgramCertificate(Slurp('/etc/letsencrypt/live/pi-clock-ecdsa/fullchain.pem'))
+ProgramPrivateKey(Slurp('/etc/letsencrypt/live/pi-clock-rsa/privkey.pem'))
+ProgramCertificate(Slurp('/etc/letsencrypt/live/pi-clock-rsa/fullchain.pem'))
+if IsDaemon() then
+   ProgramUid(33)
+   ProgramGid(33)
+   ProgramPort(80)
+   ProgramPort(443)
+   ProgramLogPath('/var/log/pi-clock.log')
+   ProgramPidPath('/var/run/pi-clock.pid')
+   SetLogLevel(kLogError)
+end
+
+-- https://stackoverflow.com/questions/22831701/lua-read-beginning-of-a-string
+function string.starts(String,Start)
+   return string.sub(String,1,string.len(Start))==Start
+end
+
+function OnServerStart()
+    ProgramTokenBucket()
+    assert(unix.setrlimit(unix.RLIMIT_NPROC, 1000, 1000))
+end
+
+function OnHttpRequest()
+
+   if GetScheme() == 'http' then
+     ServeRedirect(301, GetUrl():gsub("^http://", "https://"))
+   elseif string.starts(GetPath(), "/micro") or string.starts(GetPath(), "/blog") then
+     ServeRedirect(301, GetUrl():gsub("/blog", "/posts"):gsub("/micro", "/posts"))
+  else
+     Route()
+   end
+
+   SetHeader('Content-Language', 'en-US')
+end
+

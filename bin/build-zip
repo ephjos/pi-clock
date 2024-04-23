@@ -1,0 +1,13 @@
+#!/bin/bash
+
+rm -rf build
+cp -r public build
+echo "Created build/"
+
+rm -vf pi-clock
+cp redbean.com pi-clock
+cd build
+zip ../pi-clock -r *
+chmod +x ../pi-clock
+echo "Built pi-clock"
+

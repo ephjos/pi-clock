@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# In order to update both certs, certbot uses ports 80 and 443.
+# This script kills the running redbean server, runs the renewal,
+# kills the nginx processes started by certbot, and redeploys the server.
+ssh pi-clock '\
+  [ -f "/var/run/pi-clock.pid" ] && kill -TERM $(cat /var/run/pi-clock.pid); \
+  certbot certonly --nginx --key-type ecdsa \
+    --cert-name pi-clock-ecdsa -d pi-clock -d www.pi-clock; \
+  certbot certonly --nginx --key-type rsa \
+    --cert-name pi-clock-rsa -d pi-clock -d www.pi-clock; \
+  killall nginx; \
+  '
+./bin/build && ./bin/deploy
