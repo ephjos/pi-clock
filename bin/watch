@@ -1,9 +1,0 @@
-#!/bin/bash
-
-echo "$$" > .watchpid
-
-find public/ bin/ lua/ | entr -r -s "./bin/build-zip" &
-
-browser-sync start --server build --no-open --no-ui --files "./public/**"
-
-wait;

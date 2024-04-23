@@ -1,0 +1,21 @@
+[Unit]
+Description=Chromium Kiosk
+Wants=graphical.target
+After=graphical.target 
+Wants=network-online.target
+After=network-online.target 
+Wants=pi-clock-server.service
+Upholds=pi-clock-server.service
+After=pi-clock-server.service 
+
+[Service]
+Environment=DISPLAY=:0.0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+Type=simple
+ExecStart=/bin/bash /usr/local/bin/kiosk.sh
+Restart=on-abort
+User=pi
+Group=pi
+
+[Install]
+WantedBy=graphical.target

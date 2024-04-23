@@ -1,8 +1,0 @@
-#!/bin/bash
-
-rsync -av pi-clock pi-clock:~/
-rsync -av lua/.init.lua pi-clock:/var/www/html/.init.lua
-ssh pi-clock '\
-  [ -f "/var/run/pi-clock.pid" ] && kill -TERM $(cat /var/run/pi-clock.pid); \
-  ./pi-clock -SSS -c 0 -d -D /var/www/html -L /var/log/pi-clock.log -P /var/run/pi-clock.pid \
-  '
