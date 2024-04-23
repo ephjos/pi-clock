@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>pi-clock</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name=”robots” content=”NOODP,NOYDIR” />
+    <meta name="theme-color" content="#111111">
+
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+  </head>
+
+  <body>
+    <div class="swipe">
+      <div class="left">
+      </div>
+      <div class="right">
+      </div>
+    </div>
+    <p id="last-updated"></p>
+    <div class="datetime"><p id="time"></p></div>
+    <div class="weather">
+      <div class="radar">
+        <img id="radar-image" />
+      </div>
+      <div class="details">
+        <div class="details__section" id="current-forecast"></div>
+        <div class="details__section" id="next-forecast"></div>
+      </div>
+    </div>
+    <div class="hourly" id="hourly"></div>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
