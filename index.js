@@ -13,7 +13,7 @@ const TIME_URL = `http://worldtimeapi.org/api/timezone/${TIMEZONE}`;
 
 // Use TIME_URL to query for time on first load, sometimes time sync
 // takes a while on startup and local new Date is incorrect.
-let useBrowserTime = false;
+let useBrowserTime = true;
 
 // Keep radar image updated
 const radarImage = document.querySelector("#radar-image");
